@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Radar de Velocidade</title>
+    <script>
+        function calcularMulta() {
+            let velocidadeMaxima = prompt("Informe a velocidade máxima permitida:");
+            let velocidadeAtual = prompt("Informe a velocidade que você passou no radar:");
+            
+            if (velocidadeMaxima && velocidadeAtual) {
+                velocidadeMaxima = parseFloat(velocidadeMaxima);
+                velocidadeAtual = parseFloat(velocidadeAtual);
+                
+                if (velocidadeAtual <= velocidadeMaxima) {
+                    alert("Sem multa");
+                } else {
+                    let excesso = velocidadeAtual - velocidadeMaxima;
+                    let porcentagemExcesso = (excesso / velocidadeMaxima) * 100;
+                    
+                    if (porcentagemExcesso <= 10) {
+                        alert("Multa de R$100,00");
+                    } else if (porcentagemExcesso <= 20) {
+                        alert("Multa de R$200,00");
+                    } else {
+                        alert("Multa de R$300,00");
+                    }
+                }
+            } else {
+                alert("Por favor, preencha ambos os campos.");
+            }
+        }
+    </script>
+</head>
+<body onload="calcularMulta()">
+</body>
+</html>
