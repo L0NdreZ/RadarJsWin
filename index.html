@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radar de Velocidade</title>
     <script>
         function calcularMulta() {
-            let velocidadeMaxima = prompt("Informe a velocidade máxima permitida:");
-            let velocidadeAtual = prompt("Informe a velocidade que você passou no radar:");
+            let velocidadeMaxima = parseFloat(document.getElementById("velocidadeMaxima").value);
+            let velocidadeAtual = parseFloat(document.getElementById("velocidadeAtual").value);
+            let resultado = document.getElementById("resultado");
             
-            if (velocidadeMaxima && velocidadeAtual) {
-                velocidadeMaxima = parseFloat(velocidadeMaxima);
-                velocidadeAtual = parseFloat(velocidadeAtual);
-                
+            if (!isNaN(velocidadeMaxima) && !isNaN(velocidadeAtual)) {
                 if (velocidadeAtual <= velocidadeMaxima) {
-                    alert("Sem multa");
+                    resultado.textContent = "Sem multa";
                 } else {
                     let excesso = velocidadeAtual - velocidadeMaxima;
                     let porcentagemExcesso = (excesso / velocidadeMaxima) * 100;
                     
                     if (porcentagemExcesso <= 10) {
-                        alert("Multa de R$100,00");
+                        resultado.textContent = "Multa de R$100,00";
                     } else if (porcentagemExcesso <= 20) {
-                        alert("Multa de R$200,00");
+                        resultado.textContent = "Multa de R$200,00";
                     } else {
-                        alert("Multa de R$300,00");
+                        resultado.textContent = "Multa de R$300,00";
                     }
                 }
+            } else {
+                resultado.textContent = "Por favor, preencha ambos os campos com valores válidos.";
             }
         }
     </script>
 </head>
-<body onload="calcularMulta()">
+<body>
+    <input type="number" id="velocidadeMaxima" placeholder="Velocidade Máxima">
+    <input type="number" id="velocidadeAtual" placeholder="Velocidade Atual">
+    <button onclick="calcularMulta()">Calcular Multa</button>
+    <p id="resultado"></p>
 </body>
 </html>
